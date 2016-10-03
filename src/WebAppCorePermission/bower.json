@@ -1,0 +1,10 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "4.6.1",
+    "iCheck": "1.0.2",
+    "layer": "*",
+    "jquery": "2.0.0"
+  }
+}
