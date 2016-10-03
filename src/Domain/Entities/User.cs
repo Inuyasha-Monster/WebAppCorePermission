@@ -76,14 +76,8 @@ namespace Domain.Entities
         public virtual Department Department { get; set; }
 
         /// <summary>
-        /// 创建人实体
-        /// </summary>
-
-        public virtual User CreateUser { get; set; }
-
-        /// <summary>
         /// 角色集合
         /// </summary>
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

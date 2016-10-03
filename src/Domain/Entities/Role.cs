@@ -35,10 +35,9 @@ namespace Domain.Entities
         /// </summary>
         public string Remarks { get; set; }
 
-        public virtual User CreateUser { get; set; }
-
-        public virtual ICollection<User> Users { get; set; }
-
-        public virtual ICollection<Menu> Menus { get; set; }
+        /// <summary>
+        /// 菜单集合
+        /// </summary>
+        public virtual ICollection<RoleMenu> RoleMenus { get; set; }
     }
 }
