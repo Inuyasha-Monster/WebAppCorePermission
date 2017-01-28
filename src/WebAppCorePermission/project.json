@@ -2,6 +2,7 @@
   "dependencies": {
     "ApplicationService": "1.0.0-*",
     "Domain": "1.0.0-*",
+    "Utility": "*",
     "EntityFrameworkCore": "1.0.0-*",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
@@ -17,8 +18,7 @@
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
       "type": "platform"
-    },
-    "Utility": "1.0.0-*"
+    }
   },
 
   "tools": {
