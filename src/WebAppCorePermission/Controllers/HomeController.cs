@@ -13,7 +13,7 @@ namespace WebAppCorePermission.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            //throw new Exception("i am testing exception");
+            throw new Exception("i am testing exception");
             return View();
         }
     }

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace ApplicationService.UserApp.Dtos
 {
-    /// <summary>
-    /// 用户实体类
-    /// </summary>
-    public class User : BaseEntity
+    public class UserDto
     {
+        public Guid Id { get; set; }
         /// <summary>
         /// 用户名
         /// </summary>
@@ -71,13 +69,9 @@ namespace Domain.Entities
         public int IsDeleted { get; set; }
 
         /// <summary>
-        /// 所属部门实体
-        /// </summary>
-        public virtual Department Department { get; set; }
-
-        /// <summary>
         /// 角色集合
         /// </summary>
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+
+        public List<UserRoleDto> UserRoles { get; set; }
     }
 }

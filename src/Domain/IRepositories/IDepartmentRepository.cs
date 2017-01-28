@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApplicationService.UserService
+namespace Domain.IRepositories
 {
-    public interface IUserAppService
+    public interface IDepartmentRepository : IRepository<Department, Guid>
     {
-        User CheckUser(string userName, string password);
     }
 }
