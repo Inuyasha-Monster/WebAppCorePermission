@@ -57,10 +57,11 @@ namespace WebAppCorePermission
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleAppService, RoleAppService>();
 
-            services.AddMvc();
-
             //Session服务
+            services.AddMemoryCache();
             services.AddSession();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +81,7 @@ namespace WebAppCorePermission
             //使用静态文件
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseMvc(routers =>
             {
                 routers.MapRoute(
