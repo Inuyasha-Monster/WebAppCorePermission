@@ -2,6 +2,7 @@
 using ApplicationService.UserApp;
 using WebAppCorePermission.Models;
 using Utility.Convert;
+using Utility;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
