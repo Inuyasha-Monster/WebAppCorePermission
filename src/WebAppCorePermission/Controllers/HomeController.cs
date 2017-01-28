@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAppCorePermission.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         // GET: /<controller>/
         public IActionResult Index()
         {
-            throw new Exception("i am testing exception");
+            //throw new Exception("i am testing exception");
             return View();
         }
     }
