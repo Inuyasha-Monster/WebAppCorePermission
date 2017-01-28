@@ -9,7 +9,13 @@
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0"
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.Extensions.Configuration": "1.0.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "EntityFrameworkCore": "1.0.0-*",
+    "ApplicationService": "1.0.0-*",
+    "Microsoft.AspNetCore.Session": "1.0.0"
   },
 
   "tools": {
@@ -46,5 +52,9 @@
   "scripts": {
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   },
-  "userSecretsId": "aspnet-WebAppCorePermission-20161003015829"
+  "userSecretsId": "aspnet-WebAppCorePermission-20161003015829",
+
+  "runtimes": {
+    "win10-x64": {}
+  }
 }

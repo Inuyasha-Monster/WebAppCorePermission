@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService.MenuApp
 {
-    public class MenuAppService
+    public class MenuAppService : IMenuAppService
     {
         private readonly IMenuRepository _menuRepository;
         public MenuAppService(IMenuRepository menuRepository)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService.RoleApp
 {
-    public class RoleAppService
+    public class RoleAppService : IRoleAppService
     {
         private readonly IRoleRepository _repository;
         public RoleAppService(IRoleRepository repository)
