@@ -17,6 +17,8 @@ using ApplicationService.DepartmentApp;
 using ApplicationService.MenuApp;
 using EntityFrameworkCore.Repositories;
 using ApplicationService.UserApp;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace WebAppCorePermission
 {
@@ -58,7 +60,6 @@ namespace WebAppCorePermission
             services.AddScoped<IRoleAppService, RoleAppService>();
 
             //Session服务
-            services.AddMemoryCache();
             services.AddSession();
 
             services.AddMvc();
@@ -80,6 +81,10 @@ namespace WebAppCorePermission
             }
             //使用静态文件
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory())
+            });
 
             app.UseSession();
             app.UseMvc(routers =>

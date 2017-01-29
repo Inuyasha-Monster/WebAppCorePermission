@@ -13,6 +13,7 @@ namespace WebAppCorePermission.Models
 
         [Required(ErrorMessage = "密码不能为空。")]
         [DataType(DataType.Password)]
+        [StringLength(maximumLength: 20, MinimumLength = 6, ErrorMessage = "长度不能小于6且不能超过20")]
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }
