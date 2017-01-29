@@ -59,7 +59,7 @@ function loadTables(startPage, pageSize) {
                 tr += "<td align='center'><input type='checkbox' class='checkboxs' value='" + item.id + "'/></td>";
                 tr += "<td>" + item.userName + "</td>";
                 tr += "<td>" + (item.name == null ? "" : item.name) + "</td>";
-                tr += "<td>" + (item.email == null ? "" : item.email) + "</td>";
+                tr += "<td>" + (item.eMail == null ? "" : item.eMail) + "</td>";
                 tr += "<td>" + (item.mobileNumber == null ? "" : item.mobileNumber) + "</td>";
                 tr += "<td>" + (item.remarks == null ? "" : item.remarks) + "</td>";
                 tr += "<td><button class='btn btn-info btn-xs' href='javascript:;' onclick='edit(\"" + item.id + "\")'><i class='fa fa-edit'></i> 编辑 </button> <button class='btn btn-danger btn-xs' href='javascript:;' onclick='deleteSingle(\"" + item.id + "\")'><i class='fa fa-trash-o'></i> 删除 </button> </td>"
@@ -93,11 +93,16 @@ function loadRoles(data) {
 }
 //新增
 function add() {
+    // 判断选择组织结构
+    if ($('#treeDiv').jstree('get_selected').length <= 0) {
+        layer.alert("请选择组织结构!");
+        return;
+    }
     $("#Id").val("00000000-0000-0000-0000-000000000000");
     $("#UserName").val("");
     $("#Password").val("");
     $("#Name").val("");
-    $("#EMail").val("");
+    $("#Email").val("");
     $("#MobileNumber").val("");
     $("#Remarks").val("");
     $("#Role").select2("val", "");
@@ -115,15 +120,17 @@ function edit(id) {
             $("#UserName").val(data.userName);
             $("#Password").val(data.password);
             $("#Name").val(data.name);
-            $("#EMail").val(data.eMail);
-            $("#mobileNumber").val(data.mobileNumber);
+            $("#Email").val(data.eMail);
+            $("#MobileNumber").val(data.mobileNumber);
             $("#Remarks").val(data.remarks);
+            $('#Role').select2().val('');
             var roleIds = [];
             if (data.userRoles) {
                 $.each(data.userRoles, function (i, item) {
                     roleIds.push(item.roleId)
                 });
-                $("#Role").select2("val", roleIds);
+                $("#Role").val(roleIds);
+                $("#Role").select2().val(roleIds);
             }
             $("#Title").text("编辑用户")
             $("#editModal").modal("show");
@@ -135,7 +142,7 @@ function save() {
     var roles = "";
     if ($("#Role").val())
         roles = $("#Role").val().toString();
-    var postData = { "dto": { "Id": $("#Id").val(), "UserName": $("#UserName").val(), "Password": $("#Password").val(), "Name": $("#Name").val(), "EMail": $("#EMail").val(), "MobileNumber": $("#MobileNumber").val(), "Remarks": $("#Remarks").val(), "DepartmentId": selectedId }, "roles": roles };
+    var postData = { "dto": { "Id": $("#Id").val(), "UserName": $("#UserName").val(), "Password": $("#Password").val(), "Name": $("#Name").val(), "EMail": $("#Email").val(), "MobileNumber": $("#MobileNumber").val(), "Remarks": $("#Remarks").val(), "DepartmentId": selectedId }, "roles": roles };
     $.ajax({
         type: "Post",
         url: "/User/Edit",

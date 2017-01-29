@@ -13,6 +13,19 @@ namespace EntityFrameworkCore.Repositories
         {
         }
 
+        public void ClearRoleByUserId(Guid userId, bool save)
+        {
+            var userRoels = base._dbContext.Set<UserRole>().Where(x => x.UserId == userId).ToArray();
+            if (userRoels != null && userRoels.Any())
+            {
+                base._dbContext.Set<UserRole>().RemoveRange(userRoels);
+                if (save)
+                {
+                    Save();
+                }
+            }
+        }
+
         /// <summary>
         /// 根据角色获取权限
         /// </summary>

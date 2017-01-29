@@ -42,6 +42,10 @@ namespace WebAppCorePermission.Controllers
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(roles))
+                {
+                    return Json(new { Result = "Faild", Message = "请至少选择一个角色!" });
+                }
                 if (dto.Id == Guid.Empty)
                 {
                     dto.Id = Guid.NewGuid();
@@ -58,7 +62,6 @@ namespace WebAppCorePermission.Controllers
             catch (Exception ex)
             {
                 return Json(new { Result = "Faild", Message = ex.Message });
-
             }
         }
 

@@ -22,5 +22,7 @@ namespace Domain.IRepositories
         /// <param name="roleMenus">角色权限集合</param>
         /// <returns></returns>
         bool UpdateRoleMenu(Guid roleId, List<RoleMenu> roleMenus);
+
+        void ClearRoleByUserId(Guid userId, bool save = true);
     }
 }

@@ -13,14 +13,16 @@ namespace ApplicationService.UserApp
     {
         //用户管理仓储接口
         private readonly IUserRepository _repository;
+        private readonly IRoleRepository _roleRepository;
 
         /// <summary>
         /// 构造函数 实现依赖注入
         /// </summary>
         /// <param name="userRepository">仓储对象</param>
-        public UserAppService(IUserRepository userRepository)
+        public UserAppService(IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _repository = userRepository;
+            _roleRepository = roleRepository;
         }
 
         public User CheckUser(string userName, string password)
@@ -39,7 +41,8 @@ namespace ApplicationService.UserApp
         /// <returns></returns>
         public UserDto InsertOrUpdate(UserDto dto)
         {
-            _repository.Delete(dto.Id);
+            // 编辑清空原有角色信息
+            _roleRepository.ClearRoleByUserId(dto.Id);
             var user = _repository.InsertOrUpdate(Mapper.Map<User>(dto));
             return Mapper.Map<UserDto>(user);
         }
