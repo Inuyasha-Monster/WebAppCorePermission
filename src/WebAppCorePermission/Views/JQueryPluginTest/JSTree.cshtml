@@ -1,1 +1,171 @@
-﻿JSTree
+﻿<div class="row">
+    <div class="col-md-6">
+        <div id="jstree_demo_div">
+            <ul>
+                <li class="jstree-open" id="root1">
+                    Root node 1
+                    <ul>
+                        <li class="">Child node 1</li>
+                        <li><a href="#">Child node 2</a></li>
+                    </ul>
+                </li>
+                <li>Root node 2</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="jstree_demo_div2">
+            <ul>
+                <li class="jstree-open" id="root1">
+                    Root node 1
+                    <ul>
+                        <li data-jstree="{" selected":true}">Child node 1</li>
+                        <li><a href="#">Child node 2</a></li>
+                        <li data-jstree='{"opened":true}'>
+                            Child node 3
+                            <ul>
+                                <li data-jstree='{"disabled":true}'>Child(disabled)</li>
+                                <li data-jstree='{"icon":"fa fa-link"}'>
+                                    Child
+                                </li>
+                                <li data-jstree='{"icon":"glyphicon glyphicon-leaf"}'>
+                                    Child
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Root node 2</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="box box-success">
+        <div class="box-header">
+            <label class="box-title"> JSON JSTree 参数</label>
+            <div class="box-tools">
+                <button id="btn_select1" class="btn-box-tool btn btn-default">选择node1</button>
+                <button id="btn_select2" class="btn-box-tool btn btn-default">选择node2</button>
+                <button id="btn_select3" class="btn-box-tool btn btn-default">选择node3</button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="col-md-6" id="json1">
+
+            </div>
+            <div class="col-md-6" id="json2">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $.jstree.defaults.core.themes.variant = "large";
+            $('#jstree_demo_div').jstree({
+                "plugins": ["wholerow", "checkbox"],
+                "core": {
+                    "multiple": false,
+                    "animation": 0,
+                    "themes": {
+                        "variant": "large"
+                    }
+                },
+                "checkbox": {
+                    "keep_selected_style": false
+                }
+            });
+            $('#jstree_demo_div').on("changed.jstree", function (e, data) {
+                console.log(data.selected);
+            });
+
+            $('#jstree_demo_div2').jstree({
+                "core": {
+                    "multiple": false,
+                    "themes": {
+                        "variant": "large"
+                    }
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#json1').jstree({
+                'core': {
+                    'data': [
+                       'Simple root node',
+                       {
+                           'text': 'Root node 2',
+                           'state': {
+                               'opened': true,
+                               'selected': true
+                           },
+                           'children': [
+                             {
+                                 'text': 'Child 1',
+                                 'children': [
+                                    {
+                                        'text': 'Child 1'
+                                    },
+                                    'Child 2'
+                                 ]
+                             },
+                             'Child 2'
+                           ]
+                       }
+                    ]
+                }
+            });
+            function MyNode(id, text) {
+                this.id = id;
+                this.text = text;
+            }
+            $('#json2').on('changed.jstree', function (e, data) {
+                var i, j, r = [];
+                for (i = 0, j = data.selected.length; i < j; i++) {
+                    var node = new MyNode();
+                    node.id = data.instance.get_node(data.selected[i]).id;
+                    node.text = data.instance.get_node(data.selected[i]).text;
+                    r.push(node);
+                }
+                var info = '';
+                for (var i = 0; i < r.length; i++) {
+                    info += 'id: ' + r[i].id + ' text:' + r[i].text;
+                }
+                layer.alert('Selected: ' + info);
+            }).jstree({
+                'core': {
+                    "multiple": false,
+                    'data': [
+                       { "id": "ajson1", "parent": "#", "text": "Simple root node" },
+                       { "id": "ajson2", "parent": "#", "text": "Root node 2" },
+                       { "id": "ajson3", "parent": "ajson2", "text": "Child 1" },
+                       { "id": "ajson4", "parent": "ajson2", "text": "Child 2" },
+                       { "id": "ajson5", "parent": "ajson2", "text": "Child 3" }
+                    ]
+                }
+            });
+            // 3 ways of doing the same thing
+            // $('#jstree').jstree(true)
+            //  .select_node('mn1');
+            // $('#jstree')
+            //  .jstree('select_node', 'mn2');
+            // $.jstree.reference('#jstree')
+            //  .select_node('mn3');
+            $('#btn_select1').click(function () {
+                $('#json2').jstree('select_node', 'ajson3');
+            });
+            $('#btn_select2').click(function () {
+                $('#json2').jstree('select_node', 'ajson4');
+            });
+            $('#btn_select3').click(function () {
+                $('#json2').jstree('select_node', 'ajson5');
+            });
+        });
+    </script>
+}
