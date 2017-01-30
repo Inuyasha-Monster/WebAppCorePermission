@@ -217,22 +217,39 @@
                 <ul class="sidebar-menu">
                     <li class="header">权限管理</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li><a href="/Department/Index"><i class="fa fa-link"></i> <span>组织机构</span></a></li>
-                    <li><a href="/Role/Index"><i class="fa fa-link"></i> <span>角色管理</span></a></li>
-                    <li><a href="/User/Index"><i class="fa fa-link"></i> <span>用户管理</span></a></li>
-                    <li><a href="/Menu/Index"><i class="fa fa-link"></i> <span>功能管理</span></a></li>
-                    @*<li class="treeview">
+                    <li><a href="/Department/Index"><i class="fa fa-bank"></i> <span>组织机构</span></a></li>
+                    <li><a href="/Role/Index"><i class="fa fa-slideshare"></i> <span>角色管理</span></a></li>
+                    <li><a href="/User/Index"><i class="fa fa-user"></i><span>用户管理</span></a></li>
+                    <li><a href="/Menu/Index"><i class="fa fa-link"></i><span>功能管理</span></a></li>
+                    <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-link"></i> <span>Multilevel</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-medkit"></i><span>JQuery插件测试</span><span class="pull-right-container">
+                                <i class="fa fa-angle-double-right pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">Link in level 2</a></li>
-                            <li><a href="#">Link in level 2</a></li>
+                            <li>
+                                <a href="@Url.Action("Select2","JQueryPluginTest")" class="fa fa-link">
+                                    <span>Select2 选择器</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("JSTree","JQueryPluginTest")" class="fa fa-link">
+                                    <span>JSTree 树形菜单</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("BootstrapTree","JQueryPluginTest")" class="fa fa-link">
+                                    <span>BootstrapTree 树形菜单</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("JQueryTimeLine","JQueryPluginTest")" class="fa fa-link">
+                                    <span>JQueryTimeLine 时间轴</span>
+                                </a>
+                            </li>
                         </ul>
-                    </li>*@
+                    </li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -242,15 +259,15 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             @*<section class="content-header">
-                <h1>
-                    Page Header
-                    <small>Optional description</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                    <li class="active">Here</li>
-                </ol>
-            </section>*@
+                    <h1>
+                        Page Header
+                        <small>Optional description</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
+                </section>*@
             <!-- Main content -->
             <section class="content">
                 <!--当创建基于_Layout.cshtml布局页面的视图时，视图的内容会和布局页面合并，视图的内容会渲染呈现在@RenderBody()处-->
@@ -339,7 +356,6 @@
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
-
     <!-- js依赖库 -->
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -348,7 +364,7 @@
     <script src="~/lib/layer/layer.js"></script>
     <script src="~/lib/jstree/dist/jstree.js"></script>
     <script src="~/lib/select2/dist/js/select2.js"></script>
-    <script  src="~/lib/select2/dist/js/i18n/zh-CN.js"></script>
+    <script src="~/lib/select2/dist/js/i18n/zh-CN.js"></script>
 
     @RenderSection("scripts", false)
 </body>
